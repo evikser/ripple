@@ -247,6 +247,7 @@ func (r *Remote) run() {
 				// this command has timed out
 				delete(pending, id)
 				cmd.Fail("command timed out")
+				return
 			}
 
 			delete(timeoutCancellers, id)
