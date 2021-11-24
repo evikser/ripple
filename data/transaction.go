@@ -179,8 +179,23 @@ type AccountDelete struct {
 }
 
 type UNLModify struct {
-	TxBase
 }
+
+func (t *UNLModify) GetBase() *TxBase                    { return nil }
+func (t *UNLModify) GetType() string                     { return txNames[UNL_MODIFY] }
+func (t *UNLModify) GetTransactionType() TransactionType { return UNL_MODIFY }
+func (t *UNLModify) Prefix() HashPrefix                  { return HP_TRANSACTION_ID }
+func (t *UNLModify) GetPublicKey() *PublicKey            { return nil }
+func (t *UNLModify) GetSignature() *VariableLength       { return nil }
+func (t *UNLModify) SigningPrefix() HashPrefix           { return HP_TRANSACTION_SIGN }
+func (t *UNLModify) PathSet() PathSet                    { return PathSet(nil) }
+func (t *UNLModify) GetHash() *Hash256                   { return nil }
+
+func (t *UNLModify) Compare(other *TxBase) int {
+	return 1
+}
+
+func (t *UNLModify) InitialiseForSigning() {}
 
 func (t *TxBase) GetBase() *TxBase                    { return t }
 func (t *TxBase) GetType() string                     { return txNames[t.TransactionType] }
