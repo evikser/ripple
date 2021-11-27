@@ -178,6 +178,10 @@ type AccountDelete struct {
 	DestinationTag *uint32 `json:",omitempty"`
 }
 
+type UNLModify struct {
+	TxBase
+}
+
 func (t *TxBase) GetBase() *TxBase                    { return t }
 func (t *TxBase) GetType() string                     { return txNames[t.TransactionType] }
 func (t *TxBase) GetTransactionType() TransactionType { return t.TransactionType }

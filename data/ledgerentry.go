@@ -173,6 +173,12 @@ type DepositPreAuth struct {
 	OwnerNode *NodeIndex       `json:",omitempty"`
 }
 
+type NegativeUNL struct {
+	leBase
+}
+
+func (_ *NegativeUNL) Affects(account Account) bool { return false }
+
 func (a *AccountRoot) Affects(account Account) bool {
 	return a.Account != nil && a.Account.Equals(account)
 }
